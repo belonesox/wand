@@ -97,22 +97,26 @@ def library_paths():
                 libwand = 'lib', 'libMagickWand{0}.so.6'.format(suffix),
                 libmagick = 'lib', 'libMagickCore{0}.so.6'.format(suffix),
                 yield magick_path(libwand), magick_path(libmagick)
-    for suffix in suffixes:
-        if system == 'Windows':
-            libwand = ctypes.util.find_library('CORE_RL_wand_' + suffix)
-            libmagick = ctypes.util.find_library('CORE_RL_magick_' + suffix)
-            yield libwand, libmagick
-            libwand = ctypes.util.find_library('CORE_RL_MagickWand_' + suffix)
-            libmagick = ctypes.util.find_library(
-                'CORE_RL_MagickCore_' + suffix
-            )
-            yield libwand, libmagick
-            libwand = ctypes.util.find_library('libMagickWand' + suffix)
-            libmagick = ctypes.util.find_library('libMagickCore' + suffix)
-            yield libwand, libmagick
-        else:
-            libwand = ctypes.util.find_library('MagickWand' + suffix)
-            yield libwand, libwand
+    if 0: #Temp dirty hack            
+        for suffix in suffixes:
+            if system == 'Windows':
+                libwand = ctypes.util.find_library('CORE_RL_wand_' + suffix)
+                libmagick = ctypes.util.find_library('CORE_RL_magick_' + suffix)
+                yield libwand, libmagick
+                libwand = ctypes.util.find_library('CORE_RL_MagickWand_' + suffix)
+                libmagick = ctypes.util.find_library(
+                    'CORE_RL_MagickCore_' + suffix
+                )
+                yield libwand, libmagick
+                libwand = ctypes.util.find_library('libMagickWand' + suffix)
+                libmagick = ctypes.util.find_library('libMagickCore' + suffix)
+                yield libwand, libmagick
+            else:
+                libwand = ctypes.util.find_library('MagickWand' + suffix)
+                yield libwand, libwand
+    else:
+        what = 'libMagickWand-7.Q16HDRI.so.7'
+        yield what, what
 
 
 def load_library():
