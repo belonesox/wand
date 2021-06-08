@@ -117,7 +117,6 @@ def library_paths():
     else:
         for build in range(7, 26): # Запас на будущее
             what = f'libMagickWand-7.Q16HDRI.so.{build}'
-            print("what=", what)
             yield what, what
 
 
