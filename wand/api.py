@@ -115,8 +115,10 @@ def library_paths():
                 libwand = ctypes.util.find_library('MagickWand' + suffix)
                 yield libwand, libwand
     else:
-        what = 'libMagickWand-7.Q16HDRI.so.7'
-        yield what, what
+        for build in range(7, 26): # Запас на будущее
+            what = f'libMagickWand-7.Q16HDRI.so.{build}'
+            print("what=", what)
+            yield what, what
 
 
 def load_library():
